@@ -66,21 +66,25 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		/**
 		 * @var $emailView Tx_Fluid_View_StandaloneView
 		 */
-		$emailView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
-		$emailView->setFormat('html');
-		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
-		$emailView->assignMultiple(
+		$emailHtmlView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$emailHtmlView->assignMultiple(
 			array(
 				'issue' => $issue
 			)
 		);
+		$emailTextView = clone $emailHtmlView;
+
+		$emailHtmlView->setFormat('html');
+		$emailHtmlView->setTemplatePathAndFilename($templatePathAndFilename);
+
 		// html rendering
-		$htmlEmailBody = $emailView->render();
+		$htmlEmailBody = $emailHtmlView->render();
+		unset($emailHtmlView);
 
 		// render plain text as well
-		$emailView->setFormat('txt');
-		$emailView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.txt');
-		$textEmailBody = $emailView->render();
+		$emailTextView->setFormat('txt');
+		$emailTextView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.txt');
+		$textEmailBody = $emailTextView->render();
 		/**
 		 * @var $mail t3lib_mail_message
 		 */
