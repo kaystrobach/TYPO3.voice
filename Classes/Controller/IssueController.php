@@ -89,8 +89,15 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		 * @var $mail t3lib_mail_message
 		 */
 		$mail = t3lib_div::makeInstance('t3lib_mail_message');
-		$mail->setFrom(array($issue->getEmail() => $issue->getName()))
-			->setTo(array('info@kay-strobach.de' => 'Kay'))
+		$mail->setFrom(
+			array(
+				$issue->getEmail() => $issue->getName()
+			))
+			->setTo(
+				array(
+					$this->settings['recipient']['email'] => $this->settings['recipient']['email']
+				)
+			)
 			->setSubject($issue->getSubject())
 			->setBody($textEmailBody, 'text/plain')
 			->addPart($htmlEmailBody, 'text/html')
