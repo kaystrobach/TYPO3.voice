@@ -34,6 +34,7 @@
 	top: 0px;
 	left: 0px;
 	overflow: scroll;
+	z-index: 9999;
 }
 
 .tx_voice_button {
