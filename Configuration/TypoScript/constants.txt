@@ -8,7 +8,7 @@ plugin.tx_voice {
 		layoutRootPath = EXT:voice/Resources/Private/Layouts/
 	}
 	persistence {
-		# cat=plugin.tx_voice//a; type=string; label=Default storage PID
-		storagePid =
+		# cat=plugin.tx_voice//a; type=string; label=Default storage PID, change is from 0!
+		storagePid = 0
 	}
 }
