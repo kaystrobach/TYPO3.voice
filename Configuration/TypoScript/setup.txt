@@ -11,6 +11,12 @@ plugin.tx_voice {
 		# uncomment the following line to enable the new Property Mapper.
 		# rewrittenPropertyMapper = 1
 	}
+	settings {
+		recipient {
+			email = {$plugin.tx_voice.settings.recipient.email}
+			name  = {$plugin.tx_voice.settings.recipient.name}
+		}
+	}
 	plugin = USER
 	plugin {
 		userFunc = tx_extbase_core_bootstrap->run
