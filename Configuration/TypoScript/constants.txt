@@ -11,4 +11,12 @@ plugin.tx_voice {
 		# cat=plugin.tx_voice//a; type=string; label=Default storage PID, change is from 0!
 		storagePid = 0
 	}
+	settings {
+		recipient {
+			# cat=plugin.tx_voice//a; type=string; label=E-Mail of the Recipient
+			email =
+			# cat=plugin.tx_voice//a; type=string; label=Name of the Recipient
+			name  =
+		}
+	}
 }
