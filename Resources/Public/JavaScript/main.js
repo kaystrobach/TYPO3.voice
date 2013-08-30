@@ -26,12 +26,23 @@
 		function formSubmit(e) {
 			console.log($(this).serializeArray());
 
+			$('.userfeedbackformsending').show();
+			$('.userfeedbackform').hide();
+
 			$.ajax({
 				type: "POST",
 				url: updateURLParameter(jQuery('.tx_voice form').attr('action'), 'type', '1364118054'),
 				data: $(this).serialize(),
 				success: function() {
-					window.alert('got your message');
+					jQuery('.userfeedbackformsending').hide();
+					jQuery('.userfeedbackformdone').show();
+					jQuery('.tx_voice').delay(1000).hide(10);
+					jQuery('.tx_voice_mask').delay(1000).hide(10);
+				},
+				error: function() {
+					jQuery('#userfeedbackformerrors').html('There was an error validating your Mailadress');
+					jQuery('.userfeedbackformsending').hide();
+					jQuery('.userfeedbackform').show();
 				}
 			});
 
@@ -65,12 +76,16 @@
 						},
 						jQuerySupport: jQuery.support
 					});
+					jQuery('.userfeedbackform').show();
+					jQuery('.userfeedbackformdone').hide();
+					jQuery('.userfeedbackformsending').hide();
 					jQuery('.tx_voice').show();
 					if(jQuery().fadeIn) {
 						jQuery('.tx_voice_mask').fadeIn();
 					} else {
 						jQuery('.tx_voice_mask').show();
 					}
+					jQuery('#userfeedbackformerrors').html('');
 					jQuery('#voicePreviewImage').attr('src', canvas.toDataURL());
 					jQuery('#tx_voice_imageData').attr('value', canvas.toDataURL());
 					jQuery('#tx_voice_collectedData').attr('value', browser);
