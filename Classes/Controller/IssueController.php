@@ -61,14 +61,41 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function createAction(Tx_Voice_Domain_Model_Issue $issue) {
 
+		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+		$templateRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
+		$templatePathAndFilename = $templateRootPath . 'Email/Index.html';
+
+		/**
+		 * @var $emailView Tx_Fluid_View_StandaloneView
+		 */
+		$emailView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$emailView->setFormat('html');
+		$emailView->setTemplatePathAndFilename($templatePathAndFilename);
+		$emailView->assignMultiple(
+			array(
+				'issue' => $issue
+			)
+		);
+		// html rendering
+		$htmlEmailBody = $emailView->render();
+
+		// render plain text as well
+		$emailView->setFormat('txt');
+		$emailView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.txt');
+		$textEmailBody = $emailView->render();
+		/**
+		 * @var $mail t3lib_mail_message
+		 */
 		$mail = t3lib_div::makeInstance('t3lib_mail_message');
 		$mail->setFrom(array($issue->getEmail() => $issue->getName()))
 			->setTo(array('info@kay-strobach.de' => 'Kay'))
 			->setSubject($issue->getSubject())
-			->setBody($issue->getDescription())
+			->setBody($textEmailBody, 'text/plain')
+			->setBody($htmlEmailBody, 'text/html')
 			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'))
 			->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'))
 			->send();
+		$this->issueRepository->add($issue);
 
 		$this->view->assign('issue', $issue);
 	}
