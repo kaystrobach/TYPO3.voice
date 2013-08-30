@@ -93,7 +93,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 			->setTo(array('info@kay-strobach.de' => 'Kay'))
 			->setSubject($issue->getSubject())
 			->setBody($textEmailBody, 'text/plain')
-			->setBody($htmlEmailBody, 'text/html')
+			->addPart($htmlEmailBody, 'text/html')
 			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'))
 			->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'))
 			->send();
