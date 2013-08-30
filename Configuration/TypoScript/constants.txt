@@ -1,0 +1,14 @@
+plugin.tx_voice {
+	view {
+		# cat=plugin.tx_voice/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:voice/Resources/Private/Templates/
+		# cat=plugin.tx_voice/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:voice/Resources/Private/Partials/
+		# cat=plugin.tx_voice/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:voice/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_voice//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

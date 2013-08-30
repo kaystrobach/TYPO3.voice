@@ -1,0 +1,57 @@
+plugin.tx_voice {
+	view {
+		templateRootPath = {$plugin.tx_voice.view.templateRootPath}
+		partialRootPath = {$plugin.tx_voice.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_voice.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_voice.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+	plugin = USER
+	plugin {
+		userFunc = tx_extbase_core_bootstrap->run
+		pluginName = Voice
+		extensionName = Voice
+		controller = Issue
+		action = index
+
+		settings =< plugin.tx_voice.settings
+		persistence =< plugin.tx_voice.persistence
+		view =< plugin.tx_voice.view
+	}
+}
+
+page.footerData.998937 < plugin.tx_voice.plugin
+page.includeJSFooter {
+	html2canvas = EXT:voice/Resources/Public/JavaScript/html2canvas/html2canvas.js
+	html2canvas {
+		type = text/javascript
+	}
+	jsonPruned = EXT:voice/Resources/Public/JavaScript/JSON.pruned/pruned.js
+	jsonPruned {
+		type = text/javascript
+	}
+	voice = EXT:voice/Resources/Public/JavaScript/main.js
+	voice {
+		type = text/javascript
+	}
+}
+page.includeCSS {
+	voice = EXT:voice/Resources/Public/Stylesheet/main.css
+}
+
+voicePage = PAGE
+voicePage {
+	typeNum = 1364118054
+	config {
+		disableAllHeaderCode=1
+	}
+	10 < plugin.tx_voice.plugin
+	10 {
+		action >
+	}
+}

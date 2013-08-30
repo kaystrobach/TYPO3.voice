@@ -1,0 +1,57 @@
+.tx_voice {
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: white;
+	padding: 2%;
+	margin-top: 80px;
+}
+
+.tx_voice_shadow {
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+.tx_voice input,
+.tx_voice textarea {
+	width: 98%;
+}
+
+.tx_voice_header {
+	font-size: 40px;
+	font-weight: bold;
+	line-height: 60px;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.tx_voice_mask {
+	background-color: rgb(75, 75, 75);
+	background-color: rgba(75, 75, 75, 0.7);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	overflow: scroll;
+}
+
+.tx_voice_button {
+	position:fixed;
+	bottom: 0%;
+	right:10px;
+	background-color: white;
+	opacity: 0.3;
+	border: 1px solid silver;
+	border-bottom: none;
+	padding: 5px;
+}
+.tx_voice_icon {
+	width: 24px;
+	height: 24px;
+	background-image: url(../Images/AleksandraWolska/comment.png);
+	display: inline-block;
+}
+.tx_voice_button:hover {
+	opacity: 1;
+}

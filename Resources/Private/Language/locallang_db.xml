@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'voice'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+            
+			<label index="tx_voice_domain_model_issue">Issue</label>
+			<label index="tx_voice_domain_model_issue.subject">Subject</label>
+			<label index="tx_voice_domain_model_issue.description">Description</label>
+			<label index="tx_voice_domain_model_issue.name">Name</label>
+			<label index="tx_voice_domain_model_issue.email">Email</label>
+			<label index="tx_voice_domain_model_issue.screenshot">Screenshot</label>
+			<label index="tx_voice_domain_model_issue.collected_data">Collected Data</label>
+
+		</languageKey>
+	</data>
+</T3locallang>

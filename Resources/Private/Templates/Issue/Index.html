@@ -1,0 +1,21 @@
+
+<div class="tx_voice tx_voice_shadow">
+	<span class="tx_voice_header">How can we help?</span>
+	<div class="userfeedbackform">
+		<f:form action="create" noCache="1" object="{issue}" objectName="issue">
+			<f:form.hidden    id="tx_voice_collectedData" property="collectedData"/>
+			<f:form.hidden    id="tx_voice_imageData"     property="screenshot"/>
+			<f:form.textfield id="tx_voice_subject"       property="subject"     placeholder="Subject of the issue"/>
+			<f:form.textarea  id="tx_voice_description"   property="description" additionalAttributes="{placeholder: 'Description'}" rows="10" cols="60" />
+			<f:form.textfield id="tx_voice_name"          property="name"        placeholder="Your Name"/>
+			<f:form.textfield id="tx_voice_email"         property="email"       placeholder="Your E-Mail"/>
+
+			<f:form.submit value="Send Request"/>
+
+			<button value="Cancel" id="tx_voice_cancel">Cancel</button>
+
+			<div class="clearfix"></div>
+		</f:form>
+	</div>
+</div>
+

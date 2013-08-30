@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description>Context Sensitive Help (CSH) for table tx_voice_domain_model_issue</description>
+		<type>CSH</type>
+		<csh_table>tx_voice_domain_model_issue</csh_table>
+	</meta>
+	<data type="array">
+	<languageKey index="default" type="array">
+	   
+			<label index="subject.description">Subject</label>
+			<label index="description.description">Description</label>
+			<label index="name.description">Name</label>
+			<label index="email.description">eMail</label>
+			<label index="screenshot.description">screenshot</label>
+			<label index="collected_data.description">collectedData</label>
+		</languageKey>
+	</data>
+</T3locallang>

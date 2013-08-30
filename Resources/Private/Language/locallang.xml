@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for the Voice extension in the FRONTEND</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_voice_domain_model_issue">Issue</label>
+			<label index="tx_voice_domain_model_issue.subject">Subject</label>
+			<label index="tx_voice_domain_model_issue.description">Description</label>
+			<label index="tx_voice_domain_model_issue.name">Name</label>
+			<label index="tx_voice_domain_model_issue.email">eMail</label>
+			<label index="tx_voice_domain_model_issue.screenshot">screenshot</label>
+			<label index="tx_voice_domain_model_issue.collected_data">collectedData</label>
+		</languageKey>
+	</data>
+</T3locallang>
