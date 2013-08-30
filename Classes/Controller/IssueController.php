@@ -95,7 +95,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 			))
 			->setTo(
 				array(
-					$this->settings['recipient']['email'] => $this->settings['recipient']['email']
+					$this->settings['recipient']['email'] => $this->settings['recipient']['name']
 				)
 			)
 			->setSubject($issue->getSubject())
@@ -110,4 +110,3 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	}
 
 }
-?>
