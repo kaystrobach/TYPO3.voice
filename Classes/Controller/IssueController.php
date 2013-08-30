@@ -47,8 +47,6 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function indexAction() {
 		$issue = new Tx_Voice_Domain_Model_Issue();
-		#$issue->setEmail('dada');
-		#$issue->setName('plim');
 		$this->view->assign('issue', $issue);
 	}
 
