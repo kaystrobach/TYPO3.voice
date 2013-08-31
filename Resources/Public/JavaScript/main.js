@@ -61,36 +61,60 @@
 			return false;
 		}
 
-		function formShow() {
+		/**
+		 * return true if browser supports canvas
+		 * @returns {boolean}
+		 */
+		function testBrowserSupportOfCanvas(){
+			var elem = document.createElement('canvas');
+			return !!(elem.getContext && elem.getContext('2d'));
+		}
 
-			html2canvas( [ document.body ], {
-				onrendered: function(canvas) {
-					var browser = JSON.stringify({
-						jQueryBrowser: {
-							onLine:        1 && navigator.onLine,
-							cookieEnabled: navigator.cookieEnabled,
-							platform:      navigator.platform,
-							userAgent:     navigator.userAgent,
-							language:      navigator.language,
-							appVersion:    navigator.appVersion
-						},
-						jQuerySupport: jQuery.support
-					});
-					jQuery('.userfeedbackform').show();
-					jQuery('.userfeedbackformdone').hide();
-					jQuery('.userfeedbackformsending').hide();
-					jQuery('.tx_voice').show();
-					if(jQuery().fadeIn) {
-						jQuery('.tx_voice_mask').fadeIn();
-					} else {
-						jQuery('.tx_voice_mask').show();
+		/**
+		 * show the form and take a screenshot
+		 */
+		function formShow() {
+			if(!testBrowserSupportOfCanvas) {
+				showFormHelper();
+			} else {
+				html2canvas( [ document.body ], {
+					onrendered: function(canvas) {
+						showFormHelper();
+						jQuery('#voicePreviewImage').attr('src', canvas.toDataURL());
+						jQuery('#tx_voice_imageData').attr('value', canvas.toDataURL());
 					}
-					jQuery('#userfeedbackformerrors').html('');
-					jQuery('#voicePreviewImage').attr('src', canvas.toDataURL());
-					jQuery('#tx_voice_imageData').attr('value', canvas.toDataURL());
-					jQuery('#tx_voice_collectedData').attr('value', browser);
-				}
+				});
+			}
+
+		}
+
+		/**
+		 * just show the form, prepare values, but do not do a screenshot
+		 */
+		function showFormHelper() {
+			var browser = JSON.stringify({
+				jQueryBrowser: {
+					url:           document.location.href,
+					onLine:        1 && navigator.onLine,
+					cookieEnabled: navigator.cookieEnabled,
+					platform:      navigator.platform,
+					userAgent:     navigator.userAgent,
+					language:      navigator.language,
+					appVersion:    navigator.appVersion
+				},
+				jQuerySupport: jQuery.support
 			});
+			jQuery('#tx_voice_collectedData').attr('value', browser);
+			jQuery('#userfeedbackformerrors').html('');
+			jQuery('.userfeedbackform').show();
+			jQuery('.userfeedbackformdone').hide();
+			jQuery('.userfeedbackformsending').hide();
+			jQuery('.tx_voice').show();
+			if(jQuery().fadeIn) {
+				jQuery('.tx_voice_mask').fadeIn();
+			} else {
+				jQuery('.tx_voice_mask').show();
+			}
 		}
 
 		// taken from http://stackoverflow.com/questions/1090948/change-url-parameters-with-jquery/10997390#10997390
@@ -142,7 +166,5 @@
 
 
 jQuery(document).ready(function() {
-
 	jQuery('body').voice();
-
 });

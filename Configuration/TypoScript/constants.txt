@@ -18,5 +18,8 @@ plugin.tx_voice {
 			# cat=plugin.tx_voice//a; type=string; label=Name of the Recipient
 			name  =
 		}
+		information {
+			screenshot = 1
+		}
 	}
 }

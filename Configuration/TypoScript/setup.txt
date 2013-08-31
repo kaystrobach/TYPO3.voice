@@ -1,11 +1,11 @@
 plugin.tx_voice {
 	view {
 		templateRootPath = {$plugin.tx_voice.view.templateRootPath}
-		partialRootPath = {$plugin.tx_voice.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_voice.view.layoutRootPath}
+		partialRootPath  = {$plugin.tx_voice.view.partialRootPath}
+		layoutRootPath   = {$plugin.tx_voice.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = {$plugin.tx_voice.persistence.storagePid}
+		storagePid       = {$plugin.tx_voice.persistence.storagePid}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.
@@ -13,9 +13,13 @@ plugin.tx_voice {
 	}
 	settings {
 		recipient {
-			email = {$plugin.tx_voice.settings.recipient.email}
-			name  = {$plugin.tx_voice.settings.recipient.name}
+			email        = {$plugin.tx_voice.settings.recipient.email}
+			name         = {$plugin.tx_voice.settings.recipient.name}
+			subject      = {$plugin.tx_voice.settings.recipient.subject}
 		}
+		information {
+	        screenshot = {$plugin.tx_voice.settings.information.screenshot}
+	    }
 	}
 	plugin = USER
 	plugin {

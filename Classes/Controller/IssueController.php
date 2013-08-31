@@ -98,7 +98,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 					$this->settings['recipient']['email'] => $this->settings['recipient']['name']
 				)
 			)
-			->setSubject($issue->getSubject())
+			->setSubject($this->settings['recipient']['subject'] . $issue->getSubject())
 			->setBody($textEmailBody, 'text/plain')
 			->addPart($htmlEmailBody, 'text/html')
 			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'))
