@@ -2,10 +2,14 @@ Hello Supporter,
 
 {issue.name} has sent a message
 
-Personaldata:
+*Personaldata:*
 
- - name   : {issue.name}
- - email  : {issue.email}
+ - *name*   : {issue.name}
+ - *email*  : {issue.email}
+
+*Related Page:*
+
+ - <{issue.collectedDataObject.jQueryBrowser.url}>
 
 ===============================================================================
 

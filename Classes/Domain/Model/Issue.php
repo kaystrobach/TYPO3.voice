@@ -189,6 +189,9 @@ class Tx_Voice_Domain_Model_Issue extends Tx_Extbase_DomainObject_AbstractEntity
 		$this->collectedData = $collectedData;
 	}
 
+	public function getCollectDataObject() {
+		return json_decode($this->collectedData);
+	}
 	/**
 	 * @return string
 	 */
@@ -196,4 +199,3 @@ class Tx_Voice_Domain_Model_Issue extends Tx_Extbase_DomainObject_AbstractEntity
 		return base64_decode(substr($this->getScreenshot(),21));
 	}
 }
-?>

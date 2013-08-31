@@ -14,9 +14,11 @@ plugin.tx_voice {
 	settings {
 		recipient {
 			# cat=plugin.tx_voice//a; type=string; label=E-Mail of the Recipient
-			email =
+			email    =
 			# cat=plugin.tx_voice//a; type=string; label=Name of the Recipient
-			name  =
+			name     =
+			# cat=plugin.tx_voice//a; type=string; label=Subject prefix
+			subject  =
 		}
 		information {
 			screenshot = 1

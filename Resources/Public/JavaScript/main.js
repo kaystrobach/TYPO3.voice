@@ -74,7 +74,7 @@
 		 * show the form and take a screenshot
 		 */
 		function formShow() {
-			if(!testBrowserSupportOfCanvas) {
+			if((!testBrowserSupportOfCanvas()) || (jQuery('#tx_voice_imageData').length === 0)) {
 				showFormHelper();
 			} else {
 				html2canvas( [ document.body ], {

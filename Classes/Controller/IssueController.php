@@ -47,7 +47,8 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function indexAction() {
 		$issue = new Tx_Voice_Domain_Model_Issue();
-		$this->view->assign('issue', $issue);
+		$this->view->assign('issue',    $issue);
+		$this->view->assign('settings', $this->settings);
 	}
 
 
@@ -69,7 +70,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		$emailHtmlView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
 		$emailHtmlView->assignMultiple(
 			array(
-				'issue' => $issue
+				'issue' => $issue,
 			)
 		);
 		$emailTextView = clone $emailHtmlView;
@@ -101,9 +102,13 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 			->setSubject($this->settings['recipient']['subject'] . $issue->getSubject())
 			->setBody($textEmailBody, 'text/plain')
 			->addPart($htmlEmailBody, 'text/html')
-			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'))
-			->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'))
-			->send();
+			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'));
+		if($this->settings['information']['screenshot']) {
+			$mail->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'));
+		}
+
+		$mail->send();
+
 		$this->issueRepository->add($issue);
 
 		$this->view->assign('issue', $issue);

@@ -1,5 +1,5 @@
 .tx_voice {
-	max-width: 500px;
+	max-width: 640px;
 	margin-left: auto;
 	margin-right: auto;
 	background-color: white;
@@ -14,7 +14,10 @@
 }
 .tx_voice input,
 .tx_voice textarea {
-	width: 98%;
+	width: 97%;
+}
+.tx_voice input.bu {
+	width:auto;
 }
 
 .tx_voice_header {
