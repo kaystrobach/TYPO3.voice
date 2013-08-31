@@ -1,51 +1,21 @@
 
 <div class="tx_voice tx_voice_shadow">
-	<span class="tx_voice_header h1">How can we help?</span>
+	<span class="tx_voice_header">How can we help?</span>
 	<div class="userfeedbackform">
-
 		<div id="userfeedbackformerrors"></div>
-
-		<div class="userfeedbackformsidenote d">
-			<div class="b-evaluation"><a id="c1558"></a><h2 class="csc-firstHeader h2">Ask the community</h2><div class="csc-textpic csc-textpic-intext-right"><div class="csc-textpic-imagewrap"><div class="csc-textpic-image csc-textpic-firstcol csc-textpic-lastcol" style="width:0px;"><div></div><div class="csc-textpic-caption"></div></div></div><div class="csc-textpic-text"><p>Have developer or user question that you think the community can help with? Feel free to ask in one of our community areas.</p></div></div><div class="csc-textpic-clear"><!-- --></div><a id="c1563"></a><div class="g">
-				<div class="g-5">
-					<div class="gc"><a id="c1564"></a><ul class="arrow-list"><li><a href="http://forum.typo3.org/" target="_blank">TYPO3 Forum</a></li><li><a href="/support/mailing-lists/">Mailing lists</a></li></ul></div><!-- gc -->
-				</div><!-- g-5 -->
-				<div class="g-5">
-					<div class="gc"><a id="c1566"></a><ul class="arrow-list"><li><a href="http://typo3.org/?id=138" target="_blank">TYPO3 Wiki</a></li><li><a href="/support/irc-chat/">TYPO3 IRC</a></li></ul></div><!-- gc -->
-				</div><!-- g-5 -->
-			</div></div>
-		</div>
 		<f:form action="create" noCache="1" object="{issue}" objectName="issue">
 			<f:form.hidden    id="tx_voice_collectedData" property="collectedData"/>
 			<f:if condition="{settings.information.screenshot}">
 				<f:form.hidden    id="tx_voice_imageData"     property="screenshot"/>
 			</f:if>
-			<div class="b-form-row">
-				<div class="b-form-inputs">
-					<f:form.textfield id="tx_voice_subject"     property="subject"     placeholder="Subject of the issue"/>
-				</div>
-			</div>
-			<div class="b-form-row">
-				<div class="b-form-inputs">
-					<f:form.textarea  id="tx_voice_description" property="description" additionalAttributes="{placeholder: 'Description'}" rows="10" cols="60" />
-				</div>
-			</div>
-			<div class="b-form-row">
-				<div class="b-form-inputs">
-					<f:form.textfield id="tx_voice_name"        property="name"        placeholder="Your Name"/>
-				</div>
-			</div>
-			<div class="b-form-row">
-				<div class="b-form-inputs">
-					<f:form.textfield id="tx_voice_email"       property="email"       placeholder="Your E-Mail"/>
-				</div>
-			</div>
-			<div class="b-form-row">
-				<div class="b-form-inputs">
-					<f:form.submit class="bu"           value="Send Request"/>
-					<button        class="bu dark-grey" value="Cancel" id="tx_voice_cancel">Cancel</button>
-				</div>
-			</div>
+			<f:form.textfield id="tx_voice_subject"       property="subject"     placeholder="Subject of the issue"/>
+			<f:form.textarea  id="tx_voice_description"   property="description" additionalAttributes="{placeholder: 'Description'}" rows="10" cols="60" />
+			<f:form.textfield id="tx_voice_name"          property="name"        placeholder="Your Name"/>
+			<f:form.textfield id="tx_voice_email"         property="email"       placeholder="Your E-Mail"/>
+
+			<f:form.submit value="Send Request"/>
+
+			<button value="Cancel" id="tx_voice_cancel">Cancel</button>
 
 			<div class="clearfix"></div>
 		</f:form>
@@ -54,15 +24,6 @@
 		<p>
 			Your ideas are currently transfered. This won't take long.
 		</p>
-
-		<div class="b-evaluation"><a id="c1558"></a><h2 class="csc-firstHeader">Ask the community</h2><div class="csc-textpic csc-textpic-intext-right"><div class="csc-textpic-imagewrap"><div class="csc-textpic-image csc-textpic-firstcol csc-textpic-lastcol" style="width:0px;"><div></div><div class="csc-textpic-caption"></div></div></div><div class="csc-textpic-text"><p>Have developer or user question that you think the community can help with? Feel free to ask in one of our community areas.</p></div></div><div class="csc-textpic-clear"><!-- --></div><a id="c1563"></a><div class="g">
-			<div class="g-5">
-				<div class="gc"><a id="c1564"></a><ul class="arrow-list"><li><a href="http://forum.typo3.org/" target="_blank">TYPO3 Forum</a></li><li><a href="/support/mailing-lists/">Mailing lists</a></li></ul></div><!-- gc -->
-			</div><!-- g-5 -->
-			<div class="g-5">
-				<div class="gc"><a id="c1566"></a><ul class="arrow-list"><li><a href="http://typo3.org/?id=138" target="_blank">TYPO3 Wiki</a></li><li><a href="/support/irc-chat/">TYPO3 IRC</a></li></ul></div><!-- gc -->
-			</div><!-- g-5 -->
-		</div></div>
 	</div>
 	<div class="userfeedbackformdone">
 		Thank you for sharing your thoughts.
