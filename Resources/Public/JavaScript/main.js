@@ -3,7 +3,7 @@
 		/**
 		 * create needed elements
 		 */
-		$('body').append('<div class="tx_voice_button"><span class="tx_voice_icon"></span>Feedback / Support</div>');
+		$('body').append('<div class="tx_voice_button"><span class="tx_voice_icon"></span><span class="tx_voice_button_text">Feedback</span></div>');
 		$('body').append('<div class="tx_voice_mask"></div>');
 
 		$('.tx_voice_mask').append($('.tx_voice'));
