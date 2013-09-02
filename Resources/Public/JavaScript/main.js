@@ -40,7 +40,7 @@
 					jQuery('.tx_voice_mask').delay(1000).hide(10);
 				},
 				error: function() {
-					jQuery('#userfeedbackformerrors').html('There was an error validating your Mailadress');
+					jQuery('#userfeedbackformerrors').html('There was an error validating your email address');
 					jQuery('.userfeedbackformsending').hide();
 					jQuery('.userfeedbackform').show();
 				}
