@@ -109,7 +109,10 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 
 		$mail->send();
 
-		$this->issueRepository->add($issue);
+		/**
+		 * @todo needs to be checked to avoid an exception
+		 */
+		#$this->issueRepository->add($issue);
 
 		$this->view->assign('issue', $issue);
 	}
