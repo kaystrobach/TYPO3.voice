@@ -136,6 +136,7 @@ $TCA['tx_voice_domain_model_issue'] = array(
 				'type' => 'group',
 				'internal_type' => 'file_reference',
 				'uploadfolder' => 'uploads/tx_voice',
+				'show_thumbs' => 1,
 				'allowed' => '*',
 				'disallowed' => 'php',
 				'size' => 5,

@@ -167,7 +167,16 @@ class Tx_Voice_Domain_Model_Issue extends Tx_Extbase_DomainObject_AbstractEntity
 	 * @return void
 	 */
 	public function setScreenshot($screenshot) {
-		$this->screenshot = $screenshot;
+		if(substr($screenshot, 0, 22) === 'data:image/png;base64,') {
+			$filename = sha1($screenshot) . '.png';
+			t3lib_div::writeFile(
+				'uploads/tx_voice/' . $filename,
+				base64_decode(substr($screenshot, 22))
+			);
+			$this->screenshot = 'uploads/tx_voice/' . $filename;
+		} else {
+			$this->screenshot = $screenshot;
+		}
 	}
 
 	/**

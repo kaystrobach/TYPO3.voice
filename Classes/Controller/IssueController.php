@@ -35,7 +35,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 
 	/**
 	 * issueRepository
-	 *
+	 * @inject
 	 * @var Tx_Voice_Domain_Repository_IssueRepository
 	 */
 	protected $issueRepository;
@@ -51,8 +51,14 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		$this->view->assign('settings', $this->settings);
 	}
 
-	public function javascriptAction() {
-
+	/**
+	 * Injects the reflection service
+	 *
+	 * @param Tx_Voice_Domain_Repository_IssueRepository $issueRepository
+	 * @return void
+	 */
+	public function injectIssueRepository(Tx_Voice_Domain_Repository_IssueRepository $issueRepository) {
+		$this->issueRepository = $issueRepository;
 	}
 
 	/**
@@ -69,24 +75,22 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		/**
 		 * @var $emailView Tx_Fluid_View_StandaloneView
 		 */
-		$emailView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$emailView = $this->objectManager->get('Tx_Fluid_View_StandaloneView');
 		$emailView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.html');
+		$emailView->assignMultiple(
+			array(
+				'issue' => $issue,
+			)
+		);
+
 
 		// html rendering
-		$htmlEmailBody = $emailView->renderSection(
-			'html',
-			array(
-				'issue' => $issue,
-			)
-		);
+		$emailView->setFormat('html');
+		$htmlEmailBody = $emailView->render();
 
 		// render plain text as well
-		$textEmailBody = $emailView->renderSection(
-			'text',
-			array(
-				'issue' => $issue,
-			)
-		);
+		$emailView->setFormat('txt');
+		$textEmailBody = $emailView->render();
 
 		/**
 		 * @var $mail \t3lib_mail_message
@@ -114,7 +118,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		/**
 		 * @todo needs to be checked to avoid an exception
 		 */
-		#$this->issueRepository->add($issue);
+		$this->issueRepository->add($issue);
 
 		$this->view->assign('issue', $issue);
 	}

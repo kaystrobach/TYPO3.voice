@@ -1,12 +1,3 @@
-.tx_voice {
-	max-width: 640px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: white;
-	padding: 2%;
-	margin-top: 80px;
-}
-
 .tx_voice_shadow {
 	-moz-box-shadow: 3px 3px 4px #000;
 	-webkit-box-shadow: 5px 5px 10px 10px rgba(0, 0, 0, 0.3);
@@ -16,28 +7,8 @@
 .tx_voice textarea {
 	width: 97%;
 }
-.tx_voice input.bu {
-	width:auto;
-}
-
-.tx_voice_header {
-	font-size: 40px;
-	font-weight: bold;
-	line-height: 60px;
-	display: block;
-	margin-bottom: 20px;
-}
-
-.tx_voice_mask {
-	background-color: rgb(75, 75, 75);
-	background-color: rgba(75, 75, 75, 0.7);
-	width: 100%;
-	height: 100%;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	overflow: scroll;
-	z-index: 9999;
+.tx_voice .userfeedbackformsending, .tx_voice .userfeedbackformdone {
+	display: none;
 }
 
 .tx_voice_button {

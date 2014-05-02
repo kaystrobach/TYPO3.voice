@@ -1,0 +1,18 @@
+Hello Supporter,
+
+{issue.name} has sent a message
+
+*Personaldata:*
+
+- *name*   : {issue.name}
+- *email*  : {issue.email}
+
+*Related Page:*
+
+- <{issue.collectedDataObject.jQueryBrowser.url}>
+
+===============================================================================
+
+{issue.description}
+
+===============================================================================

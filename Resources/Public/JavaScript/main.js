@@ -1,65 +1,42 @@
 (function( $ ) {
 	$.fn.voice = function() {
-		/**
-		 * create needed elements
-		 */
-		$('body').append('<div class="tx_voice_button"><span class="tx_voice_icon"></span><span class="tx_voice_button_text">Feedback</span></div>');
-		$('body').append('<div class="tx_voice_mask"></div>');
+		$('body').append('<a href="?type=1364118054" class="tx_voice_button"><span class="tx_voice_icon"></span><span class="tx_voice_button_text">Feedback</span></a>');
 
-		$('.tx_voice_mask').append($('.tx_voice'));
-
-		/**
-		 * hide everything unneeded
-		 */
-		$('.tx_voice').hide();
-		$('.tx_voice_mask').hide();
-
-		/**
-		 * add needed events
-		 */
-		$('.tx_voice_button').click(formShow);
-
-		$('#tx_voice_cancel').click(formHide);
-
-		$('.tx_voice form').submit(formSubmit);
-
-		function formSubmit(e) {
-			console.log($(this).serializeArray());
-
-			$('.userfeedbackformsending').show();
-			$('.userfeedbackform').hide();
-
-			$.ajax({
+		$(".tx_voice_button").fancybox({
+			ajax : {
 				type: "POST",
-				url: updateURLParameter(jQuery('.tx_voice form').attr('action'), 'type', '1364118054'),
-				data: $(this).serialize(),
-				success: function() {
-					jQuery('.userfeedbackformsending').hide();
-					jQuery('.userfeedbackformdone').show();
-					jQuery('.tx_voice').delay(1000).hide(10);
-					jQuery('.tx_voice_mask').delay(1000).hide(10);
-				},
-				error: function() {
-					jQuery('#userfeedbackformerrors').html('There was an error validating your email address');
-					jQuery('.userfeedbackformsending').hide();
-					jQuery('.userfeedbackform').show();
-				}
-			});
+				data: 'mydata=test'
+			},
+			onComplete: function() {
+				aggregateBrowserData();
+				$(".tx_voice form").submit(
+					function(event) {
+						$('.userfeedbackformsending').show();
+						$('.userfeedbackform').hide();
 
-			e.preventDefault();
-			return false;
-		}
+						$.ajax({
+							type: "POST",
+							url: updateURLParameter(jQuery('.tx_voice form').attr('action'), 'type', '1364118055'),
+							data: $(this).serialize(),
+							success: function() {
+								jQuery('.userfeedbackformsending').hide();
+								jQuery('.userfeedbackformdone').show();
+								jQuery.fancybox.close();
+							},
+							error: function() {
+								jQuery('#userfeedbackformerrors').html('There was an error validating your email address');
+								jQuery('.userfeedbackformsending').hide();
+								jQuery('.userfeedbackform').show();
+							}
+						});
 
-		function formHide(e) {
-			if(jQuery().fadeOut) {
-				jQuery('.tx_voice_mask').fadeOut();
-			} else {
-				jQuery('.tx_voice_mask').hide();
+						event.preventDefault();
+						return false;
+					}
+				);
 			}
-			jQuery('.tx_voice').hide();
-			e.preventDefault();
-			return false;
-		}
+		});
+
 
 		/**
 		 * return true if browser supports canvas
@@ -73,11 +50,12 @@
 		/**
 		 * show the form and take a screenshot
 		 */
-		function formShow() {
+		function aggregateBrowserData() {
 			if((!testBrowserSupportOfCanvas()) || (jQuery('#tx_voice_imageData').length === 0)) {
 				showFormHelper();
 			} else {
 				html2canvas( [ document.body ], {
+					ignoreElements: "IFRAME|OBJECT|PARAM|#fancybox-overlay|#fancybox-wrap",
 					onrendered: function(canvas) {
 						showFormHelper();
 						jQuery('#voicePreviewImage').attr('src', canvas.toDataURL());
