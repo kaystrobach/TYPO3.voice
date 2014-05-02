@@ -43,7 +43,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	/**
 	 * indexAction
 	 *
-	 * @return
+	 * @return void
 	 */
 	public function indexAction() {
 		$issue = new Tx_Voice_Domain_Model_Issue();
@@ -51,6 +51,9 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		$this->view->assign('settings', $this->settings);
 	}
 
+	public function javascriptAction() {
+
+	}
 
 	/**
 	 * action create
@@ -62,34 +65,33 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 
 		$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(Tx_Extbase_Configuration_ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
 		$templateRootPath = t3lib_div::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
-		$templatePathAndFilename = $templateRootPath . 'Email/Index.html';
 
 		/**
 		 * @var $emailView Tx_Fluid_View_StandaloneView
 		 */
-		$emailHtmlView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
-		$emailHtmlView->assignMultiple(
+		$emailView = $this->objectManager->create('Tx_Fluid_View_StandaloneView');
+		$emailView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.html');
+
+		// html rendering
+		$htmlEmailBody = $emailView->renderSection(
+			'html',
 			array(
 				'issue' => $issue,
 			)
 		);
-		$emailTextView = clone $emailHtmlView;
-
-		$emailHtmlView->setFormat('html');
-		$emailHtmlView->setTemplatePathAndFilename($templatePathAndFilename);
-
-		// html rendering
-		$htmlEmailBody = $emailHtmlView->render();
-		unset($emailHtmlView);
 
 		// render plain text as well
-		$emailTextView->setFormat('txt');
-		$emailTextView->setTemplatePathAndFilename($templateRootPath . 'Email/Index.txt');
-		$textEmailBody = $emailTextView->render();
+		$textEmailBody = $emailView->renderSection(
+			'text',
+			array(
+				'issue' => $issue,
+			)
+		);
+
 		/**
-		 * @var $mail t3lib_mail_message
+		 * @var $mail \t3lib_mail_message
 		 */
-		$mail = t3lib_div::makeInstance('t3lib_mail_message');
+		$mail = $this->objectManager->create('t3lib_mail_message');
 		$mail->setFrom(
 			array(
 				$issue->getEmail() => $issue->getName()

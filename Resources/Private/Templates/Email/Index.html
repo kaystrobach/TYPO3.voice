@@ -1,5 +1,5 @@
-<html>
-	<body>
+<f:section name="html">
+	<html>
 		<body>
 			<pre>
 Hello Supporter,
@@ -22,6 +22,26 @@ Related Page:
 ===============================================================================
 			</pre>
 		</body>
-	</body>
-</html>
+	</html>
+</f:section>
 
+<f:section name="text">
+Hello Supporter,
+
+{issue.name} has sent a message
+
+*Personaldata:*
+
+- *name*   : {issue.name}
+- *email*  : {issue.email}
+
+*Related Page:*
+
+- <{issue.collectedDataObject.jQueryBrowser.url}>
+
+===============================================================================
+
+{issue.description}
+
+===============================================================================
+</f:section>
