@@ -5,7 +5,15 @@
 }
 .tx_voice input,
 .tx_voice textarea {
-	width: 97%;
+	display: block;
+	margin-left:auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid silver;
+	padding: 4px;
+	width: 90%;
+	border-radius: 5px;
 }
 .tx_voice .userfeedbackformsending, .tx_voice .userfeedbackformdone {
 	display: none;
