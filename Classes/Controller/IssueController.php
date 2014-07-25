@@ -95,25 +95,30 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 		/**
 		 * @var $mail \t3lib_mail_message
 		 */
-		$mail = $this->objectManager->create('t3lib_mail_message');
-		$mail->setFrom(
-			array(
-				$issue->getEmail() => $issue->getName()
-			))
-			->setTo(
-				array(
-					$this->settings['recipient']['email'] => $this->settings['recipient']['name']
-				)
-			)
-			->setSubject($this->settings['recipient']['subject'] . $issue->getSubject())
-			->setBody($textEmailBody, 'text/plain')
-			->addPart($htmlEmailBody, 'text/html')
-			->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'));
-		if($this->settings['information']['screenshot']) {
-			$mail->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'));
+		try {
+			$mail = $this->objectManager->create('t3lib_mail_message');
+			$mail->setFrom(
+					array(
+							$issue->getEmail() => $issue->getName()
+					))
+					->setTo(
+							array(
+									$this->settings['recipient']['email'] => $this->settings['recipient']['name']
+							)
+					)
+					->setSubject($this->settings['recipient']['subject'] . $issue->getSubject())
+					->setBody($textEmailBody, 'text/plain')
+					->addPart($htmlEmailBody, 'text/html')
+					->attach(new Swift_Attachment(print_r(json_decode($issue->getCollectedData()), TRUE), 'trace.txt', 'text/plain'));
+			if($this->settings['information']['screenshot']) {
+				$mail->attach(new Swift_Attachment($issue->getScreenshotAsFile(), 'screen.png', 'image/png'));
+			}
+
+			$mail->send();
+		} catch(Exception $e) {
+			$this->throwStatus(404, 'Not Found', $e->getMessage());
 		}
 
-		$mail->send();
 
 		/**
 		 * @todo needs to be checked to avoid an exception
