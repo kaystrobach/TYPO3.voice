@@ -23,8 +23,8 @@
 								jQuery('.userfeedbackformdone').show();
 								jQuery.fancybox.close();
 							},
-							error: function() {
-								jQuery('#userfeedbackformerrors').html('There was an error validating your email address');
+							error: function(response) {
+								jQuery('#userfeedbackformerrors').html('There was an error validating your email address <br />' + response.responseText);
 								jQuery('.userfeedbackformsending').hide();
 								jQuery('.userfeedbackform').show();
 							}
