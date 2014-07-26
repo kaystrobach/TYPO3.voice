@@ -47,6 +47,13 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 	 */
 	public function indexAction() {
 		$issue = new Tx_Voice_Domain_Model_Issue();
+
+		// If user logged in, assign user values.
+		$nameValue = isset($GLOBALS['TSFE']->fe_user->user['name']) ? $GLOBALS['TSFE']->fe_user->user['name'] : '';
+		$emailValue = isset($GLOBALS['TSFE']->fe_user->user['email']) ? $GLOBALS['TSFE']->fe_user->user['email'] : '';
+
+		$this->view->assign('nameValue', $nameValue);
+		$this->view->assign('emailValue', $emailValue);
 		$this->view->assign('issue',    $issue);
 		$this->view->assign('settings', $this->settings);
 	}
