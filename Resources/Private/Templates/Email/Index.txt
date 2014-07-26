@@ -9,7 +9,7 @@ Hello Supporter,
 
 *Related Page:*
 
-- <{issue.collectedDataObject.jQueryBrowser.url}>
+- <{issue.url}>
 
 ===============================================================================
 
