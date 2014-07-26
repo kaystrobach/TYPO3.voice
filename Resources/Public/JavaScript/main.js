@@ -11,12 +11,30 @@
 				aggregateBrowserData();
 				$(".tx_voice form").submit(
 					function(event) {
+						event.preventDefault();
+
+						var onEmptyError = 'Please fill out all fields.';
+						var onEmailError = 'There was an error validating your email address';
+						var hasError = false;
+
+						$(this).find('input[type=text], textarea').each(function() {
+							if(!hasError && !$(this).val().replace(/^\s+|\s+$/gm,'')) {
+								$('#userfeedbackformerrors').html(onEmptyError);
+								$(this).focus();
+								hasError = true;
+								return;
+							}
+						});
+						if(hasError) {
+							return false;
+						}
+
 						$('.userfeedbackformsending').show();
 						$('.userfeedbackform').hide();
 
 						$.ajax({
 							type: "POST",
-							url: updateURLParameter(jQuery('.tx_voice form').attr('action'), 'type', '1364118055'),
+							url: updateURLParameter($(this).attr('action'), 'type', '1364118055'),
 							data: $(this).serialize(),
 							success: function() {
 								jQuery('.userfeedbackformsending').hide();
@@ -24,13 +42,12 @@
 								jQuery.fancybox.close();
 							},
 							error: function(response) {
-								jQuery('#userfeedbackformerrors').html('There was an error validating your email address <br />' + response.responseText);
+								jQuery('#userfeedbackformerrors').html(onEmailError + '<br />' + response.responseText);
 								jQuery('.userfeedbackformsending').hide();
 								jQuery('.userfeedbackform').show();
 							}
 						});
 
-						event.preventDefault();
 						return false;
 					}
 				);
@@ -93,6 +110,7 @@
 			} else {
 				jQuery('.tx_voice_mask').show();
 			}
+			jQuery('#tx_voice_subject').focus();
 		}
 
 		// taken from http://stackoverflow.com/questions/1090948/change-url-parameters-with-jquery/10997390#10997390

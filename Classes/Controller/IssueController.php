@@ -116,7 +116,7 @@ class Tx_Voice_Controller_IssueController extends Tx_Extbase_MVC_Controller_Acti
 
 			$mail->send();
 		} catch(Exception $e) {
-			$this->throwStatus(404, 'Not Found', $e->getMessage());
+			$this->throwStatus(400, 'Invalid input', htmlspecialchars(str_replace('[]','', $e->getMessage())));
 		}
 
 
