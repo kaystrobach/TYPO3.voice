@@ -207,4 +207,12 @@ class Tx_Voice_Domain_Model_Issue extends Tx_Extbase_DomainObject_AbstractEntity
 	function getScreenshotAsFile() {
 		return base64_decode(substr($this->getScreenshot(),21));
 	}
+
+	/**
+	 * @return string
+	 */
+	public function getUrl() {
+		$data = $this->getCollectDataObject();
+		return (string)$data->jQueryBrowser->url;
+	}
 }
