@@ -1,6 +1,14 @@
 (function( $ ) {
 	$.fn.voice = function() {
-		$('body').append('<a href="?type=1364118054" class="tx_voice_button"><span class="tx_voice_icon"></span><span class="tx_voice_button_text">Feedback</span></a>');
+		var voiceUrl = '';
+		var formPageUid = $('meta[name=voiceFormPageUid]').attr("content");
+		if (typeof formPageUid != 'undefined') {
+			voiceUrl = "index.php?id=" + formPageUid + "&type=1364118054";
+		} else {
+			voiceUrl = "?type=1364118054";
+		}
+
+		$('body').append('<a href="' + voiceUrl + '" class="tx_voice_button"><span class="tx_voice_icon"></span><span class="tx_voice_button_text">Feedback</span></a>');
 
 		$(".tx_voice_button").fancybox({
 			ajax : {

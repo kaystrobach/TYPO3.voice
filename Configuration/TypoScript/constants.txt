@@ -23,5 +23,6 @@ plugin.tx_voice {
 		information {
 			screenshot = 1
 		}
+		formPageUid =
 	}
 }
