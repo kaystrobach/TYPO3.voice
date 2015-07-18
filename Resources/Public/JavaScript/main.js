@@ -3,7 +3,7 @@
 		var voiceUrl = '';
 		var formPageUid = $('meta[name=voiceFormPageUid]').attr("content");
 		if (typeof formPageUid != 'undefined') {
-			voiceUrl = "index.php?id=" + formPageUid + "&type=1364118054";
+			voiceUrl = "/index.php?id=" + formPageUid + "&type=1364118054";
 		} else {
 			voiceUrl = "?type=1364118054";
 		}
